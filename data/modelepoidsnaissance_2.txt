@@ -1,0 +1,13 @@
+model { 
+ for(i in 1 : N)
+      {
+        poids[i] ~ dnorm(mu[i], tau)
+        mu[i] <- moyennes[sexe[i]] + delta * (age[i] - agemoy)
+      }
+      agemoy = mean(age)
+      moyennes[1] ~ dunif(2500, 5000)
+      moyennes[2] ~ dunif(2500, 5000)
+      tau <- 1/(sigma^2)
+      sigma ~ dunif(200, 800)
+      delta ~ dunif(-500, 500)
+}
